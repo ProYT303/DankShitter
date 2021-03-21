@@ -108,6 +108,12 @@ function startBot() {
         }, bankDelay);
         pushResponse("pls dep all");
     }
+    if (config.hl) {
+        setInterval(() => {
+            pushResponse("pls hl");
+        }, hlDelay);
+        pushResponse("pls hl");
+    }
 }
 
 bot.on("ready", async () => {
@@ -123,7 +129,7 @@ bot.on("message", async message => {
     try {
         if (message.embeds[0].description) {
             if (!message.embeds[0].description.includes("A number secret")) return
-            if (message.embeds[0].author.name.includes(client.user.username)) {
+            if (message.embeds[0].author.name.includes(bot.user.username)) {
                 if (msg.author.id === "270904126974590976") {
                     let testlol = message.embeds[0].description.split("**")
                     testlol = testlol[1]
@@ -150,7 +156,7 @@ bot.on("message", async message => {
         //e
     }
     if (message.content.includes("is broken lmao")) { // Laptop broke autobuy
-        if (content.includes(`<@${client.user.id}>`) | content.includes(`<@!${client.user.id}>`)) {
+        if (content.includes(`<@${bot.user.id}>`) | content.includes(`<@!${bot.user.id}>`)) {
             message.channel.startTyping()
             console.log(`Buying new laptop`)
             setTimeout(() => {
