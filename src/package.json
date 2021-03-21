@@ -13,6 +13,6 @@
     "discord.js": "^11.5.1",
     "fs": "0.0.1-security",
     "node-bash-title": "0.0.2",
-    "javascript-obfuscator": "^2.10.3"
+    "express.js": "^1.0.0"
   }
 }
