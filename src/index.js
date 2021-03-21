@@ -8,12 +8,18 @@ var config = require("./../config");
 const debug = false;
 const bot = new Discord.Client();
 var channel;
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
 
 var responseQueue = [];
 var fishDelay = config.premium ? 32000 : Math.floor(Math.random() * (62000 - 72000) + 62000);
 var huntDelay = config.premium ? 42000 : Math.floor(Math.random() * (62000 - 72000) + 62000);
 var searchDelay = config.premium ? 22000 : Math.floor(Math.random() * (37000 - 47000) + 37000);
 var pmDelay = config.premium ? 47000 : Math.floor(Math.random() * (62000 - 72000) + 62000);
+var hlDelay = config.premium ? 24000 : getRandomInt(24, 25) * 1000
 var begDelay = config.premium ? 27000 : Math.floor(Math.random() * (47000 - 57000) + 47000);
 var bankDelay = 80000;
 
@@ -114,7 +120,46 @@ bot.on("message", async message => {
     if (debug) {
         console.log(clc.yellow("Message received: " + message.content));
     }
+    try {
+        if (message.embeds[0].description) {
+            if (!message.embeds[0].description.includes("A number secret")) return
+            if (message.embeds[0].author.name.includes(client.user.username)) {
+                if (msg.author.id === "270904126974590976") {
+                    let testlol = message.embeds[0].description.split("**")
+                    testlol = testlol[1]
 
+                    if (testlol > 50) {
+                        message.channel.startTyping()
+                        setTimeout(() => {
+                            send("low")
+                            message.channel.stopTyping()
+                            console.log(`Sended low (pls hl)`)
+                        }, 300)
+
+                    } else {
+                        setTimeout(() => {
+                            send("high")
+                            message.channel.stopTyping()
+                            console.log(`Sended high (pls hl)`)
+                        }, 300)
+                    }
+                }
+            }
+        }
+    } catch {
+        //e
+    }
+    if (message.content.includes("is broken lmao")) { // Laptop broke autobuy
+        if (content.includes(`<@${client.user.id}>`) | content.includes(`<@!${client.user.id}>`)) {
+            message.channel.startTyping()
+            console.log(`Buying new laptop`)
+            setTimeout(() => {
+                message.channel.stopTyping()
+                message.channel.send('pls buy laptop')
+            }, 1000)
+
+        }
+    }
     if (channel) {
         if (channel == message.channel) {
             var contentPieces = message.content.split(" ");
