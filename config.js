@@ -15,7 +15,7 @@ config.hunt = false;
 config.search = true;
 config.beg = true;
 config.pm = false;
-
+config.hl = true;
 // advanced config
 config.duplicateRequests = true; // determines whether or not the bot will re-send messages wrapped by ` (necessary for hunting/fishing/pm to prevent dying/breaking, also responds to events)
 config.responseDelay = 750;
