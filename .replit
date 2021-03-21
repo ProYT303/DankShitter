@@ -1,1 +1,1 @@
-run = "node repl/repl.js"
+run = "node src/repl.js"
